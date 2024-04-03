@@ -22,39 +22,41 @@ class _HomePageState extends State<HomePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: getDataFromApi(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          }
-          if (snapshot.hasData) {
-            List data = snapshot.data!;
-            return ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) => Container(
-                margin: EdgeInsets.only(bottom: 20),
-                height: 50,
-                width: double.infinity,
-                color: Colors.white24,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CountryFlags.flag(
-                      data[index].code.substring(0, 2),
-                      width: 100,
-                      height: 50,
-                    ),
-                    Text(data[index].title),
-                    Text("${data[index].cb_price} UZS"),
-                  ],
+      body: Center(
+        child: FutureBuilder(
+          future: getDataFromApi(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            }
+            if (snapshot.hasData) {
+              List data = snapshot.data!;
+              return ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) => Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  height: 50,
+                  width: double.infinity,
+                  color: Colors.white24,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      CountryFlags.flag(
+                        data[index].code.substring(0, 2),
+                        width: 100,
+                        height: 50,
+                      ),
+                      Text(data[index].title),
+                      Text("${data[index].cb_price} UZS"),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }
-          if (snapshot.hasError) {}
-          return Center(child: Text("Error"));
-        },
+              );
+            }
+            if (snapshot.hasError) {}
+            return Center(child: Text("Error"));
+          },
+        ),
       ),
     );
   }

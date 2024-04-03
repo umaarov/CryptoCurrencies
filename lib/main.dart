@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("Crypto Currencies"),
+          centerTitle: true,
+        ),
         body: HomePage(),
       ),
     );
