@@ -1,4 +1,4 @@
-# lesson_4
+# CryptoCurrencies
 
 A new Flutter project.
 
